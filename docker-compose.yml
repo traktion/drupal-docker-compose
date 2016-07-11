@@ -1,0 +1,26 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:1
+    volumes:
+        - ./etc/nginx/conf.d/drupal.conf:/etc/nginx/conf.d/drupal.conf:ro
+    ports:
+        - "80:8080"
+    links:
+        - drupal
+  drupal:
+    image: drupal:8-fpm
+    links:
+        - percona
+  percona:
+    image: percona:5
+    volumes:
+        - volume01:/var/lib/mysql
+    environment:
+        - MYSQL_USER=drupal
+        - MYSQL_PASSWORD=drupal
+        - MYSQL_DATABASE=drupal
+        - MYSQL_ROOT_PASSWORD=drupal
+volumes:
+  volume01: {}
+  volume02: {}
