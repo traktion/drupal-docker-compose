@@ -3,7 +3,7 @@ services:
   nginx:
     image: nginx:1
     volumes:
-        - ./etc/nginx/conf.d/drupal.conf:/etc/nginx/conf.d/drupal.conf:ro
+        - ./conf.d/drupal.conf:/etc/nginx/conf.d/drupal.conf:ro
     ports:
         - "80:8080"
     links:
@@ -23,4 +23,3 @@ services:
         - MYSQL_ROOT_PASSWORD=drupal
 volumes:
   volume01: {}
-  volume02: {}
