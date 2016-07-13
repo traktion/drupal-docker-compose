@@ -8,10 +8,14 @@ services:
         - "80:8080"
     links:
         - drupal
+    volumes_from:
+        - drupal
   drupal:
     image: drupal:8-fpm
     links:
         - percona
+    volumes:
+        - /var/www/html
   percona:
     image: percona:5
     volumes:
